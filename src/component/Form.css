@@ -1,0 +1,17 @@
+.input {
+  border: 2px solid black;
+  border-radius: 20px;
+  margin-left: 5px;
+  text-align: center;
+}
+.btn {
+  border: 2px solid black !important;
+  border-radius: 20%;
+  text-align: center;
+  background: #0abd22;
+  margin-left: 5px;
+  width: 120px;
+}
+.btn:hover {
+  transform: scale(2px);
+}

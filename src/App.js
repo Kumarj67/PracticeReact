@@ -1,24 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import CartItem from "./component/CartItem";
+import Form from "./component/Form";
+import ReviewButton from "./component/ReviewButton";
+import ItemData from "./Data/Db.jsx";
+import VIdeos from "./VideoComponenets/VIdeos";
+import VideoDB from "./Data/VideoDB";
+import PlayButton from "./VideoComponenets/PlayButton";
+import Counter from "./component/Counter";
 
 function App() {
+  // let items = [
+  //   {
+  //     id: 1,
+  //     title: "Item-1",
+  //     price: "409",
+  //     Quantity: "65",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Item-2",
+  //     price: "999",
+  //     Quantity: "42",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Item-3",
+  //     price: "1999",
+  //     Quantity: "1",
+  //   },
+  // ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="text-3xl font-bold underline">CART</div>
+      <Form></Form>
+
+      <div onClick={() => console.log("hello")} className="w-half">
+        {ItemData.map((item) => (
+          <CartItem
+            key={item.id}
+            title={item.title}
+            price={item.price}
+            Quantity={item.Quantity}
+            id={item.id}
+          >
+            <ReviewButton
+              onPlay={() => console.log("Play", item.title)}
+              onPause={() => console.log("Pause and Remove ", item.title)}
+            >
+              {item.title}
+            </ReviewButton>
+          </CartItem>
+        ))}
+        <Counter></Counter>
+      </div>
+
+      <div className="w-half">
+        {VideoDB.map((video) => (
+          <VIdeos
+            key={video.id}
+            title={video.title}
+            channel={video.channel}
+            views={video.views}
+          >
+            <PlayButton
+              onPlay={() => console.log("Play", video.title)}
+              onPause={() => console.log("Pause and Remove ", video.title)}
+            >
+              {video.title}
+            </PlayButton>
+          </VIdeos>
+        ))}
+      </div>
+    </>
   );
 }
 
