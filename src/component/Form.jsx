@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "./Form.css";
 
 const Form = ({ onAddCart }) => {
-  const [item, setItem] = useState({
+  const initialState = {
+    title: "",
+    price: "",
+    Quantity: "",
     time: "1 Month Ago",
-  });
+  };
+  const [item, setItem] = useState(initialState);
   function handleChange(e) {
     e.stopPropagation();
     setItem({ ...item, [e.target.name]: e.target.value });
@@ -15,6 +19,7 @@ const Form = ({ onAddCart }) => {
     e.stopPropagation();
     e.preventDefault();
     onAddCart(item);
+    setItem(initialState);
     console.log(item);
   }
   return (
@@ -26,7 +31,7 @@ const Form = ({ onAddCart }) => {
           className="input"
           onChange={handleChange}
           name="title"
-          // value={item.title}
+          value={item.title}
         />
         <input
           type="text"
@@ -34,15 +39,15 @@ const Form = ({ onAddCart }) => {
           className="input"
           onChange={handleChange}
           name="price"
-          // value={item.price}
+          value={item.price}
         />
         <input
           type="text"
           placeholder="Quantity"
           className="input"
           onChange={handleChange}
-          name="quantity"
-          // value={item.Quantity}
+          name="Quantity"
+          value={item.Quantity}
         />
         <button type="submit" className="btn" onClick={handleSubmit}>
           Add

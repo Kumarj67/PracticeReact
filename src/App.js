@@ -1,15 +1,15 @@
 import "./App.css";
 
-import CartItem from "./component/CartItem";
 import Form from "./component/Form";
-import ReviewButton from "./component/ReviewButton";
+
 import ItemData from "./Data/Db.jsx";
 import VIdeos from "./VideoComponenets/VIdeos";
 import VideoDB from "./Data/VideoDB";
 import PlayButton from "./VideoComponenets/PlayButton";
-import Counter from "./component/Counter";
+
 import FormVideo from "./VideoComponenets/FormVideo";
 import { useState } from "react";
+import CartList from "./component/CartList";
 
 function App() {
   // let items = [
@@ -58,27 +58,8 @@ function App() {
         </button> */}
       </div>
       <Form onAddCart={addCart}></Form>
+      <CartList items={items}></CartList>
 
-      <div onClick={() => console.log("hello")} className="w-half">
-        {items.map((item) => (
-          <CartItem
-            key={item.id}
-            title={item.title}
-            price={item.price}
-            Quantity={item.Quantity}
-            time={item.time}
-            id={item.id}
-          >
-            <ReviewButton
-              onPlay={() => console.log("Play", item.title)}
-              onPause={() => console.log("Pause and Remove ", item.title)}
-            >
-              {item.title}
-            </ReviewButton>
-          </CartItem>
-        ))}
-        <Counter></Counter>
-      </div>
       <FormVideo></FormVideo>
 
       <div className="w-half">
