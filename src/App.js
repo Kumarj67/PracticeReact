@@ -33,9 +33,25 @@ function App() {
   //   },
   // ];
   const [items, setItems] = useState(ItemData);
+  const [editableItem, setEditableItem] = useState(null);
   function addCart(cart) {
     setItems([...items, { ...cart, id: items.length + 1 }]);
   }
+  function deleteItems(id) {
+    setItems(items.filter((cartItem) => cartItem.id !== id));
+    // console.log(id);
+  }
+  function editItems(id) {
+    setEditableItem(items.find((cartItem) => cartItem.id === id));
+    // console.log(id);
+  }
+  function updateItem(item) {
+    const index = items.findIndex((cartItem) => cartItem.id === item.id);
+    const newItems = [...items];
+    newItems.splice(index, 1, item);
+    setItems(newItems);
+  }
+
   return (
     <>
       <div className="text-3xl font-bold underline">CART</div>
@@ -57,8 +73,16 @@ function App() {
           Add Items
         </button> */}
       </div>
-      <Form onAddCart={addCart}></Form>
-      <CartList items={items}></CartList>
+      <Form
+        onAddCart={addCart}
+        onEditableItem={editableItem}
+        onUpdateItems={updateItem}
+      ></Form>
+      <CartList
+        onEditItems={editItems}
+        onDeleteItems={deleteItems}
+        items={items}
+      ></CartList>
 
       <FormVideo></FormVideo>
 

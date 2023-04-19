@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Form.css";
 
-const Form = ({ onAddCart }) => {
+const Form = ({ onAddCart, onEditableItem, onUpdateItems }) => {
   const initialState = {
     title: "",
     price: "",
@@ -9,6 +9,7 @@ const Form = ({ onAddCart }) => {
     time: "1 Month Ago",
   };
   const [item, setItem] = useState(initialState);
+
   function handleChange(e) {
     e.stopPropagation();
     setItem({ ...item, [e.target.name]: e.target.value });
@@ -18,10 +19,22 @@ const Form = ({ onAddCart }) => {
   function handleSubmit(e) {
     e.stopPropagation();
     e.preventDefault();
-    onAddCart(item);
+    if (onEditableItem) {
+      onUpdateItems(item);
+    } else {
+      onAddCart(item);
+    }
+
     setItem(initialState);
     console.log(item);
   }
+  // To edit item
+  useEffect(() => {
+    if (onEditableItem) {
+      setItem(onEditableItem);
+    }
+  }, [onEditableItem]);
+
   return (
     <div>
       <div className="flex p-4 w-[60px] h-[60px]">
@@ -50,7 +63,7 @@ const Form = ({ onAddCart }) => {
           value={item.Quantity}
         />
         <button type="submit" className="btn" onClick={handleSubmit}>
-          Add
+          {onEditableItem ? "Edit " : "Add "}
         </button>
       </div>
     </div>

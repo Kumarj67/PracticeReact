@@ -2,7 +2,7 @@ import React from "react";
 import CartItem from "./CartItem";
 import ReviewButton from "./ReviewButton";
 import Counter from "./Counter";
-const CartList = ({ items }) => {
+const CartList = ({ items, onDeleteItems, onEditItems, onUpdateItems }) => {
   return (
     <div>
       <div onClick={() => console.log("hello")} className="w-half">
@@ -14,6 +14,9 @@ const CartList = ({ items }) => {
             Quantity={item.Quantity}
             time={item.time}
             id={item.id}
+            DeleteItem={onDeleteItems}
+            EditItem={onEditItems}
+            UpdateItem={onUpdateItems}
           >
             <ReviewButton
               onPlay={() => console.log("Play", item.title)}
