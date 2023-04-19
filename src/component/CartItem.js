@@ -4,7 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { BiEditAlt } from "react-icons/bi";
 import { GrCompliance } from "react-icons/gr";
 
-const CartItem = ({ title, Quantity, price, id, children }) => {
+const CartItem = ({ title, Quantity, price, id, children, time }) => {
   return (
     <div>
       <div className="p-4 flex w-half">
@@ -17,6 +17,7 @@ const CartItem = ({ title, Quantity, price, id, children }) => {
           <h1 className="font-medium "> {title} </h1>
           <h2>Price:{price}</h2>
           <h2>Quantity:{Quantity}</h2>
+          <h2>Time:{time}</h2>
           <GrCompliance size={20} className="mt-[10px]" />
           <BiEditAlt size={20} className="mt-[-20px] ml-[25px]" />
           <FaRegTrashAlt size={20} className="mt-[-20px] ml-[50px]" />

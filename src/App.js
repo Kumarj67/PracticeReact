@@ -8,6 +8,8 @@ import VIdeos from "./VideoComponenets/VIdeos";
 import VideoDB from "./Data/VideoDB";
 import PlayButton from "./VideoComponenets/PlayButton";
 import Counter from "./component/Counter";
+import FormVideo from "./VideoComponenets/FormVideo";
+import { useState } from "react";
 
 function App() {
   // let items = [
@@ -30,19 +32,41 @@ function App() {
   //     Quantity: "1",
   //   },
   // ];
-
+  const [items, setItems] = useState(ItemData);
+  function addCart(cart) {
+    setItems([...items, { ...cart, id: items.length + 1 }]);
+  }
   return (
     <>
       <div className="text-3xl font-bold underline">CART</div>
-      <Form></Form>
+      <div>
+        {/* <button
+          type=""
+          onClick={() => {
+            setItems([
+              ...items,
+              {
+                id: items.length + 1,
+                title: "Item-2",
+                price: "999",
+                Quantity: "165",
+              },
+            ]);
+          }}
+        >
+          Add Items
+        </button> */}
+      </div>
+      <Form onAddCart={addCart}></Form>
 
       <div onClick={() => console.log("hello")} className="w-half">
-        {ItemData.map((item) => (
+        {items.map((item) => (
           <CartItem
             key={item.id}
             title={item.title}
             price={item.price}
             Quantity={item.Quantity}
+            time={item.time}
             id={item.id}
           >
             <ReviewButton
@@ -55,6 +79,7 @@ function App() {
         ))}
         <Counter></Counter>
       </div>
+      <FormVideo></FormVideo>
 
       <div className="w-half">
         {VideoDB.map((video) => (

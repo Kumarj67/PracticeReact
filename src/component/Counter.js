@@ -10,8 +10,12 @@ const Counter = () => {
   }
   return (
     <div>
-      <h1>{number}</h1>
-      <button type="Submit" onClick={handleClick}>
+      <h1 className="m-4">{number}</h1>
+      <button
+        type="Submit"
+        className="bg-slate-500 text-white ml-4 "
+        onClick={handleClick}
+      >
         Counter
       </button>
     </div>

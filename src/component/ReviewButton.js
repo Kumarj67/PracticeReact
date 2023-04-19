@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ReviewButton = ({ message, children, onPlay, onPause }) => {
-  let Playing = false;
+  const [Playing, setPlaying] = useState(false);
+  // let Playing = false;
   function handleClick(e) {
     e.stopPropagation();
     if (Playing) {
@@ -9,7 +10,7 @@ const ReviewButton = ({ message, children, onPlay, onPause }) => {
     } else {
       onPlay();
     }
-    Playing = !Playing;
+    setPlaying(!Playing);
   }
   return (
     <div>
